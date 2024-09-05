@@ -1,22 +1,12 @@
 const express = require("express");
 const fs = require("fs");
 
+const { readData, writeData, DATA_FILE } = require("./helper");
+
 const app = express();
 const PORT = 3000;
-const DATA_FILE = "data.json";
 
 app.use(express.json()); // To parse JSON bodies
-
-// Helper function to read data from the JSON file
-function readData() {
-  const data = fs.readFileSync(DATA_FILE, "utf8");
-  return JSON.parse(data);
-}
-
-// Helper function to write data to the JSON file
-function writeData(data) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), "utf8");
-}
 
 // Read all items
 app.get("/items", (req, res) => {
