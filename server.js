@@ -17,9 +17,15 @@ app.get("/items", (req, res) => {
 // Create a new item
 app.post("/items", (req, res) => {
   const data = readData();
-  const newItem = req.body;
+
+  const nextId =
+    data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
+
+  const newItem = { id: nextId, ...req.body };
+
   data.push(newItem);
   writeData(data);
+
   res.status(201).json(newItem);
 });
 
