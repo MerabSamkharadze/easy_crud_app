@@ -14,7 +14,7 @@ app.get("/items", (req, res) => {
   res.json(data);
 });
 
-// Create a new item
+// Create a new items
 app.post("/items", (req, res) => {
   const data = readData();
 
